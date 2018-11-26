@@ -1,30 +1,40 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    './src/index.jsx'
+  mode: "development",
+  entry: "./src/index.jsx",
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Chatty App",
+      template: "template.html"
+    })
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/build/'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js"
+  },
+  devServer: {
+    contentBase: "./dist"
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
-        include: path.join(__dirname, 'src')
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
       },
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
       }
     ]
