@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class ChatBar extends Component {
   submitEvt = (evt, code) => {
@@ -14,7 +15,7 @@ export default class ChatBar extends Component {
   };
 
   render() {
-    const { name } = this.props.currentUser;
+    const { name, set } = this.props.currentUser;
     return (
       <footer className="chatbar">
         <input
@@ -22,7 +23,7 @@ export default class ChatBar extends Component {
           onKeyUp={e => {
             this.submitEvt(e, "");
           }}
-          placeholder={name}
+          placeholder={set ? name : "Your name: (Optional)"}
         />
         <input
           onKeyUp={e => {
@@ -35,3 +36,13 @@ export default class ChatBar extends Component {
     );
   }
 }
+ChatBar.propTypes = {
+  handleSubmit: PropTypes.func,
+  currentUser: PropTypes.objectOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      set: PropTypes.bool,
+      color: PropTypes.string
+    })
+  )
+};

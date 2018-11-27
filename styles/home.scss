@@ -16,6 +16,13 @@ body {
   position: fixed;
   right: 0;
 }
+.usersOnline {
+  color: blue;
+  transition: 0.2s all ease 0s;
+}
+.usersOnline:hover {
+  color: rgb(119, 0, 255);
+}
 
 .chatbar-message,
 .chatbar-username {
@@ -25,6 +32,21 @@ body {
   line-height: 40px;
   margin: 5px;
   padding: 0 9px;
+}
+button {
+  border-radius: 5px;
+  border: 2px solid rgb(122, 122, 122);
+  background-color: rgba(255, 255, 255, 0.85);
+  color: rgb(122, 122, 122);
+  padding: 5px 2px;
+  font-size: 10px;
+  -webkit-transition: color 0.5s ease-in 0s, border-color 0.5s ease-in 0s,
+    background-color 0.5s ease-in 0s;
+  -o-transition: color 0.5s ease-in 0s, border-color 0.5s ease-in 0s,
+    background-color 0.5s ease-in 0s;
+  transition: color 0.5s ease-in 0s, border-color 0.5s ease-in 0s,
+    background-color 0.5s ease-in 0s;
+  font-family: "Arvo", serif;
 }
 
 .chatbar-message {
@@ -41,7 +63,7 @@ body {
 }
 
 .message.system {
-  font-style: italic;
+  font-style: normal;
   padding: 5px 20px;
 }
 
@@ -65,6 +87,9 @@ body {
   background: tomato;
   border-bottom: 1px solid black;
   height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   left: 0;
   padding: 0 10px;
   position: fixed;
