@@ -25,6 +25,7 @@ Open another terminal folder to start the websocket server
 ```
 cd chatty-websocket
 npm install
+npm start
 ```
 
 ### Static Files
