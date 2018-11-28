@@ -36,9 +36,20 @@ For example, if you copy a file called my_image.png into the build folder you ca
 
 ### Dependencies
 
-- React
-- Webpack
-- [babel-loader](https://github.com/babel/babel-loader)
 - [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [ws](https://www.npmjs.com/package/ws)
 - [Expressjs](https://expressjs.com/)
+- @babel/core : "^7.1.6"
+- @babel/plugin-proposal-class-properties: "^7.1.0"
+- @babel/preset-env: "^7.1.6"
+- @babel/preset-react: "^7.0.0"
+- babel-loader: "^8.0.4"
+- css-loader: "^1.0.1"
+- html-webpack-plugin: "^3.2.0"
+- node-sass: "^4.10.0"
+- sass-loader: "^7.1.0"
+- style-loader: "^0.23.1"
+- webpack: "^4.26.1"
+- webpack-cli: "^3.1.2"
+- react: "16.6.3"
+- react-dom: "16.6.3"
