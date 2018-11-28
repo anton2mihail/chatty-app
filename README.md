@@ -39,6 +39,11 @@ For example, if you copy a file called my_image.png into the build folder you ca
 - [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 - [ws](https://www.npmjs.com/package/ws)
 - [Expressjs](https://expressjs.com/)
+- react: "16.6.3"
+- react-dom: "16.6.3"
+
+### DevDependencies
+
 - @babel/core : "^7.1.6"
 - @babel/plugin-proposal-class-properties: "^7.1.0"
 - @babel/preset-env: "^7.1.6"
@@ -51,5 +56,3 @@ For example, if you copy a file called my_image.png into the build folder you ca
 - style-loader: "^0.23.1"
 - webpack: "^4.26.1"
 - webpack-cli: "^3.1.2"
-- react: "16.6.3"
-- react-dom: "16.6.3"
