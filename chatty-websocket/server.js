@@ -29,6 +29,8 @@ const server = express()
 // Create the WebSockets server
 const wss = new SocketServer({ server });
 let n = 0;
+
+// Generalized function to broadcast some data to all connected clients
 function broadcastToClients(wss, data) {
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
@@ -42,24 +44,23 @@ function broadcastToClients(wss, data) {
 // the ws parameter in the callback.
 wss.on("connection", ws => {
   n += 1;
+  // Set random color by client connection
   let rand = Math.floor(Math.random() * 9);
   const color = colors[rand];
-  console.log(rand);
   console.log("Client connected");
   let data = {
     numberUsers: n,
     type: "newUser",
     color: null
   };
+  // Broadcast to everyone else.
   broadcastToClients(wss, data);
 
-  ws.on("open", () => {
-    console.log("Connection Opened!");
-  });
+  // Handle incoming data from client
   ws.on("message", function incoming(data) {
-    // Broadcast to everyone else.
     let u = JSON.parse(data);
     switch (JSON.parse(data).type) {
+      // Handle the case when new message comes in from one client
       case "postMessage":
         u.id = uuid4();
         console.log(data);
@@ -72,16 +73,19 @@ wss.on("connection", ws => {
       default:
         throw new Error("Unknown event type " + data.type);
     }
+    // Broadcast to everyone else.
     broadcastToClients(wss, u);
   });
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on("close", () => {
+    // Decrease the number of connected clients
     n -= 1;
     let data = {
       numberUsers: n,
       type: "newUser"
     };
+    // Broadcast to everyone else.
     broadcastToClients(wss, data);
     console.log("Client disconnected");
   });

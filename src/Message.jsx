@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Message extends Component {
+  /**
+   *
+   *
+   * @returns jsx to display Message
+   * @memberof Message
+   */
   render() {
     const { username, content } = this.props.message;
 
@@ -21,7 +27,7 @@ export default class Message extends Component {
     );
   }
 }
-
+// Prop validation
 Message.propTypes = {
   message: PropTypes.shape({
     id: PropTypes.string,

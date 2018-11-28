@@ -4,6 +4,12 @@ import PropTypes from "prop-types";
 import Notification from "./Notification.jsx";
 
 export default class MessageList extends Component {
+  /**
+   *
+   *
+   * @returns jsx to display MessageList
+   * @memberof MessageList
+   */
   render() {
     const messageList = this.props.messages.map(el => {
       return (
@@ -24,6 +30,7 @@ export default class MessageList extends Component {
     );
   }
 }
+// Prop validation
 MessageList.propTypes = {
   notification: PropTypes.array,
   messages: PropTypes.arrayOf(

@@ -6,6 +6,11 @@ import { createSocket, onIncoming, sendNewMessage } from "./services/socket";
 const Socket = createSocket("ws://localhost:3001");
 
 class App extends Component {
+  /**
+   *Creates an instance of App.
+   * @param {*} props
+   * @memberof App
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +20,11 @@ class App extends Component {
       numberUsers: 0
     };
   }
+  /**
+   *Sets up a listener for messages from the websocket server right after the component mounts
+   *
+   * @memberof App
+   */
   componentDidMount() {
     Socket.onmessage = msg => {
       let data = JSON.parse(msg.data);
@@ -40,6 +50,13 @@ class App extends Component {
     };
   }
 
+  /**
+   *Handles the display of notifications by cycling though them every 5.6 seconds
+   *
+   * @param {*} prevProps
+   * @param {*} prevState
+   * @memberof App
+   */
   componentDidUpdate(prevProps, prevState) {
     if (prevState.notification[0] !== this.state.notification[0]) {
       console.log("new notification");
@@ -54,12 +71,22 @@ class App extends Component {
       }, 5600);
     }
   }
+  /**
+   *Makes sure to stop the timeout once the component dismounts
+   *
+   * @memberof App
+   */
   componentWillUnmount() {
     if (this.timer) {
       clearTimeout(this.timer);
     }
   }
 
+  /**
+   *Handles the update of the current user's name, and sends a notification to the websocket server
+   *
+   * @memberof App
+   */
   updateUser = newUser => {
     Socket.send(
       JSON.stringify({
@@ -78,6 +105,11 @@ class App extends Component {
     });
   };
 
+  /**
+   *Adds to the array of notifications
+   *
+   * @memberof App
+   */
   createNotification = data => {
     this.setState(prev => {
       let newState = Object.create(prev);
@@ -86,6 +118,11 @@ class App extends Component {
     });
   };
 
+  /**
+   *Builds a message object based on passed properties
+   *
+   * @memberof App
+   */
   createMessage = (text, user, type) => {
     return {
       type: type,
@@ -94,6 +131,11 @@ class App extends Component {
     };
   };
 
+  /**
+   *Deals with incoming messages from the websocket server
+   *
+   * @memberof App
+   */
   handleIncoming = msg => {
     const currentMessages = this.state.messages;
     const newMessage = msg;
@@ -102,6 +144,11 @@ class App extends Component {
     });
   };
 
+  /**
+   *Handles the submit of all input elements based on the passed properties
+   *
+   * @memberof App
+   */
   handleSubmit = (content, bool = true) => {
     if (bool) {
       const newMessage = this.createMessage(
@@ -115,6 +162,12 @@ class App extends Component {
     }
   };
 
+  /**
+   *Builds the App component
+   *
+   * @returns jsx to display
+   * @memberof App
+   */
   render() {
     return (
       <div>

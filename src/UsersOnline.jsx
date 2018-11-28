@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class UsersOnline extends Component {
+  /**
+   *
+   *
+   * @returns jsx to display UsersOnline component
+   * @memberof UsersOnline
+   */
   render() {
     return (
       <p className="usersOnline">
@@ -11,7 +17,7 @@ export default class UsersOnline extends Component {
     );
   }
 }
-
+// Prop validation
 UsersOnline.propTypes = {
   numberUsers: PropTypes.number
 };

@@ -2,12 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class Notification extends Component {
+  /**
+   *Creates an instance of Notification.
+   * @param {*} props
+   * @memberof Notification
+   */
   constructor(props) {
     super(props);
     this.state = {
       isHidden: false
     };
   }
+  /**
+   *Handles the click of the dismiss button
+   *
+   * @memberof Notification
+   */
   handleClick = e => {
     this.setState({
       isHidden: true
@@ -19,6 +29,12 @@ export default class Notification extends Component {
     }, 3000);
   };
 
+  /**
+   *
+   *
+   * @returns jsx to display Notification
+   * @memberof Notification
+   */
   render() {
     return (
       <div
@@ -55,6 +71,7 @@ export default class Notification extends Component {
     );
   }
 }
+// Prop validation
 Notification.propTypes = {
   notification: PropTypes.arrayOf(
     PropTypes.shape({
