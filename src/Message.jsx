@@ -11,12 +11,7 @@ export default class Message extends Component {
           className="message-username"
           style={{
             color:
-              "" +
-              `${
-                username == this.props.currentUser.name
-                  ? this.props.currentUser.color
-                  : ""
-              }`
+              "" + `${this.props.message.color ? this.props.message.color : ""}`
           }}
         >
           {username}

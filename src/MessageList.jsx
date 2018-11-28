@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Message from "./Message.jsx";
 import PropTypes from "prop-types";
+import Notification from "./Notification.jsx";
 
 export default class MessageList extends Component {
   render() {
@@ -17,21 +18,7 @@ export default class MessageList extends Component {
       <main className="messages">
         {messageList}
         <div className="message system">
-          {this.props.notification[0]}
-          {
-            <p
-              style={{
-                paddingLeft: "5"
-              }}
-            >
-              &nbsp;
-            </p>
-          }
-          {this.props.notification[0] ? (
-            <button onClick={() => {}}>Dismiss</button>
-          ) : (
-            ""
-          )}
+          <Notification notification={this.props.notification} />
         </div>
       </main>
     );

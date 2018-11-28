@@ -30,7 +30,6 @@ class App extends Component {
           this.setState(prev => {
             let newState = Object.create(prev);
             newState.numberUsers = data.numberUsers;
-            newState.currentUser.color = data.color;
             return newState;
           });
           break;

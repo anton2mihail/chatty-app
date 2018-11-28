@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 export default class ChatBar extends Component {
   submitEvt = (evt, code) => {
-    if (evt.keyCode == 13 && evt.target.value !== "") {
+    if (evt.keyCode == 13 && evt.target.value.trim() !== "") {
       if (code === "c") {
-        this.props.handleSubmit(evt.target.value);
+        this.props.handleSubmit(evt.target.value.trim());
         evt.target.value = "";
       } else {
-        this.props.handleSubmit(evt.target.value, false);
+        this.props.handleSubmit(evt.target.value.trim(), false);
         evt.target.value = "";
       }
     }
@@ -38,11 +38,9 @@ export default class ChatBar extends Component {
 }
 ChatBar.propTypes = {
   handleSubmit: PropTypes.func,
-  currentUser: PropTypes.objectOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      set: PropTypes.bool,
-      color: PropTypes.string
-    })
-  )
+  currentUser: PropTypes.shape({
+    name: PropTypes.string,
+    set: PropTypes.bool,
+    color: PropTypes.string
+  })
 };

@@ -43,12 +43,13 @@ function broadcastToClients(wss, data) {
 wss.on("connection", ws => {
   n += 1;
   let rand = Math.floor(Math.random() * 9);
+  const color = colors[rand];
   console.log(rand);
   console.log("Client connected");
   let data = {
     numberUsers: n,
     type: "newUser",
-    color: colors[rand]
+    color: null
   };
   broadcastToClients(wss, data);
 
@@ -61,7 +62,9 @@ wss.on("connection", ws => {
     switch (JSON.parse(data).type) {
       case "postMessage":
         u.id = uuid4();
+        console.log(data);
         u.type = "incomingMessage";
+        u.color = color;
         break;
       case "postNotification":
         u.type = "incomingNotification";
