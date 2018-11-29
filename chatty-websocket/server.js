@@ -4,6 +4,7 @@ const express = require("express");
 const WebSocket = require("ws");
 const SocketServer = WebSocket.Server;
 const uuid4 = require("uuid/v4");
+const escapehtml = require("escape-html");
 const colors = [
   "#00FF00",
   "#D2691E",
@@ -63,6 +64,7 @@ wss.on("connection", ws => {
       // Handle the case when new message comes in from one client
       case "postMessage":
         u.id = uuid4();
+        u.content = escapehtml(u.content);
         console.log(data);
         u.type = "incomingMessage";
         u.color = color;

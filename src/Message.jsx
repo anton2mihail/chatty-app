@@ -22,7 +22,10 @@ export default class Message extends Component {
         >
           {username}
         </span>
-        <span className="message-content">{content}</span>
+        <span
+          className="message-content"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
       </div>
     );
   }

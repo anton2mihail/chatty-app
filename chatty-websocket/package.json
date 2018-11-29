@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "escape-html": "^1.0.3",
     "express": "4.16.4",
     "uuid": "^3.3.2",
     "ws": "6.1.2"
