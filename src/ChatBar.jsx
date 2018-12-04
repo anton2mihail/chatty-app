@@ -2,21 +2,34 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class ChatBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameChng: ""
+    };
+  }
   /**
    *Only handles the submit event of the input form if it's not empty and the user hits the enter key to signify that they're done
    *
    * @memberof ChatBar
    */
   submitEvt = (evt, code) => {
-    if (evt.keyCode == 13 && evt.target.value.trim() !== "") {
-      if (code === "c") {
-        this.props.handleSubmit(evt.target.value.trim());
-        evt.target.value = "";
-      } else {
-        this.props.handleSubmit(evt.target.value.trim(), false);
-        evt.target.value = "";
-      }
+    if (evt.keyCode === 13 && evt.target.value.trim() !== "") {
+      this.props.handleSubmit(evt.target.value.trim(), true);
+      evt.target.value = "";
     }
+  };
+
+  changeEvt = evt => {
+    this.setState({
+      nameChng: evt.target.value.trim()
+    });
+    setTimeout(() => {
+      if (this.state.nameChng !== "") {
+        this.props.handleSubmit(this.state.nameChng, false);
+        //evt.target.value = "";
+      }
+    }, 1000);
   };
 
   /**
@@ -31,8 +44,8 @@ export default class ChatBar extends Component {
       <footer className="chatbar">
         <input
           className="chatbar-username"
-          onKeyUp={e => {
-            this.submitEvt(e, "");
+          onChange={e => {
+            this.changeEvt(e, "");
           }}
           placeholder={set ? name : "Your name: (Optional)"}
         />
