@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class UsersOnline extends Component {
   /**
@@ -12,7 +12,7 @@ export default class UsersOnline extends Component {
     return (
       <p className="usersOnline">
         {this.props.numberUsers}
-        {" Users Online"}
+        {' Users Online'}
       </p>
     );
   }

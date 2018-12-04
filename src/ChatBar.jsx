@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class ChatBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameChng: ""
+      nameChng: ''
     };
   }
   /**
@@ -14,9 +14,9 @@ export default class ChatBar extends Component {
    * @memberof ChatBar
    */
   submitEvt = (evt, code) => {
-    if (evt.keyCode === 13 && evt.target.value.trim() !== "") {
+    if (evt.keyCode === 13 && evt.target.value.trim() !== '') {
       this.props.handleSubmit(evt.target.value.trim(), true);
-      evt.target.value = "";
+      evt.target.value = '';
     }
   };
 
@@ -25,7 +25,7 @@ export default class ChatBar extends Component {
       nameChng: evt.target.value.trim()
     });
     setTimeout(() => {
-      if (this.state.nameChng !== "") {
+      if (this.state.nameChng !== '') {
         this.props.handleSubmit(this.state.nameChng, false);
         //evt.target.value = "";
       }
@@ -45,13 +45,13 @@ export default class ChatBar extends Component {
         <input
           className="chatbar-username"
           onChange={e => {
-            this.changeEvt(e, "");
+            this.changeEvt(e, '');
           }}
-          placeholder={set ? name : "Your name: (Optional)"}
+          placeholder={set ? name : 'Your name: (Optional)'}
         />
         <input
           onKeyUp={e => {
-            this.submitEvt(e, "c");
+            this.submitEvt(e, 'c');
           }}
           className="chatbar-message"
           placeholder="Type a message and hit ENTER"

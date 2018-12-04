@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Notification extends Component {
   /**
@@ -41,16 +41,16 @@ export default class Notification extends Component {
         style={
           this.state.isHidden
             ? {
-                display: "none"
+                display: 'none'
               }
-            : { display: "block" }
+            : { display: 'block' }
         }
       >
-        {this.props.notification[0] ? this.props.notification[0] : ""}
+        {this.props.notification[0] ? this.props.notification[0] : ''}
         {
           <p
             style={{
-              paddingLeft: "5"
+              paddingLeft: '5'
             }}
           >
             &nbsp;
@@ -65,7 +65,7 @@ export default class Notification extends Component {
             Dismiss
           </button>
         ) : (
-          ""
+          ''
         )}
       </div>
     );

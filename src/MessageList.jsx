@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import Message from "./Message.jsx";
-import PropTypes from "prop-types";
-import Notification from "./Notification.jsx";
+import React, { Component } from 'react';
+import Message from './Message.jsx';
+import PropTypes from 'prop-types';
+import Notification from './Notification.jsx';
 
 export default class MessageList extends Component {
   /**
@@ -12,13 +12,7 @@ export default class MessageList extends Component {
    */
   render() {
     const messageList = this.props.messages.map(el => {
-      return (
-        <Message
-          key={el.id}
-          currentUser={this.props.currentUser}
-          message={el}
-        />
-      );
+      return <Message key={el.id} currentUser={this.props.currentUser} message={el} />;
     });
     return (
       <main className="messages">

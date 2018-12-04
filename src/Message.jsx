@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Message extends Component {
   /**
@@ -16,16 +16,12 @@ export default class Message extends Component {
         <span
           className="message-username"
           style={{
-            color:
-              "" + `${this.props.message.color ? this.props.message.color : ""}`
+            color: '' + `${this.props.message.color ? this.props.message.color : ''}`
           }}
         >
           {username}
         </span>
-        <span
-          className="message-content"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
+        <span className="message-content" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
     );
   }

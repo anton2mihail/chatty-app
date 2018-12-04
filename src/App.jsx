@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ChatBar from "./ChatBar.jsx";
-import MessageList from "./MessageList.jsx";
-import UsersOnline from "./UsersOnline.jsx";
-import { createSocket, onIncoming, sendNewMessage } from "./services/socket";
-const Socket = createSocket("ws://localhost:3001");
+import React, { Component } from 'react';
+import ChatBar from './ChatBar.jsx';
+import MessageList from './MessageList.jsx';
+import UsersOnline from './UsersOnline.jsx';
+import { createSocket, onIncoming, sendNewMessage } from './services/socket';
+const Socket = createSocket('ws://localhost:3001');
 
 class App extends Component {
   /**
@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       messages: [],
-      currentUser: { name: "Anonymous", set: false, color: null },
+      currentUser: { name: 'Anonymous', set: false, color: null },
       notification: [],
       numberUsers: 0
     };
@@ -29,14 +29,14 @@ class App extends Component {
     Socket.onmessage = msg => {
       let data = JSON.parse(msg.data);
       switch (data.type) {
-        case "incomingMessage":
+        case 'incomingMessage':
           this.handleIncoming(data);
           break;
-        case "incomingNotification":
+        case 'incomingNotification':
           this.createNotification(data);
           // handle incoming notification
           break;
-        case "newUser":
+        case 'newUser':
           this.setState(prev => {
             let newState = Object.create(prev);
             newState.numberUsers = data.numberUsers;
@@ -45,7 +45,7 @@ class App extends Component {
           break;
         default:
           // show an error in the console if the message type is unknown
-          throw new Error("Unknown event type " + data.type);
+          throw new Error('Unknown event type ' + data.type);
       }
     };
   }
@@ -59,7 +59,7 @@ class App extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
     if (prevState.notification[0] !== this.state.notification[0]) {
-      console.log("new notification");
+      console.log('new notification');
       this.timer = setTimeout(() => {
         this.timer = null;
         this.setState(prev => {
@@ -90,10 +90,8 @@ class App extends Component {
   updateUser = newUser => {
     Socket.send(
       JSON.stringify({
-        type: "postNotification",
-        content: `${
-          this.state.currentUser.name
-        } has changed their username to ${newUser}`
+        type: 'postNotification',
+        content: `${this.state.currentUser.name} has changed their username to ${newUser}`
       })
     );
     this.setState({
@@ -151,11 +149,7 @@ class App extends Component {
    */
   handleSubmit = (content, bool = true) => {
     if (bool) {
-      const newMessage = this.createMessage(
-        content,
-        this.state.currentUser.name,
-        "postMessage"
-      );
+      const newMessage = this.createMessage(content, this.state.currentUser.name, 'postMessage');
       sendNewMessage(Socket, newMessage);
     } else {
       this.updateUser(content);
@@ -182,10 +176,7 @@ class App extends Component {
           messages={this.state.messages}
           notification={this.state.notification}
         />
-        <ChatBar
-          handleSubmit={this.handleSubmit}
-          currentUser={this.state.currentUser}
-        />
+        <ChatBar handleSubmit={this.handleSubmit} currentUser={this.state.currentUser} />
       </div>
     );
   }
